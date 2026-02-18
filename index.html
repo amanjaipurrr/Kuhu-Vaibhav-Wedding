@@ -3,28 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kuhu & Vaibhav | Royal Invite</title>
+    <title>Kuhu & Vaibhav | Royal Wedding</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@300;400&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@300;400&family=Great+Vibes&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
         :root {
             --gold: #d4af37;
-            --royal-red: #800000;
-            --saffron: #f4c430;
-            --ivory: #fffcf2;
-            --glass: rgba(255, 252, 242, 0.85);
+            --royal-red: #8b0000;
+            --jaipur-pink: #f4dada;
+            --ivory: #fffdf9;
         }
 
         body {
             margin: 0;
             font-family: 'Montserrat', sans-serif;
             background-color: var(--ivory);
-            /* Traditional Pattern Background */
             background-image: url('https://www.transparenttextures.com/patterns/mandala.png');
             color: #333;
             overflow-x: hidden;
+            text-align: center;
         }
 
         #petals-container { position: fixed; top: 0; width: 100%; height: 100%; pointer-events: none; z-index: 99; }
@@ -36,49 +35,62 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            text-align: center;
-            border-bottom: 8px double var(--gold);
+            padding: 20px;
+            border-bottom: 5px double var(--gold);
         }
 
-        .hero h2 { font-family: 'Great Vibes', cursive; font-size: 2.2rem; color: var(--royal-red); margin: 0; }
-        .hero h1 { font-family: 'Cinzel', serif; font-size: 2.5rem; color: var(--gold); margin: 10px 0; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); }
+        .ganesh-icon { width: 80px; margin-bottom: 15px; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.2)); }
+        
+        .shlok {
+            font-family: 'Tiro Devanagari Hindi', serif;
+            color: var(--royal-red);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
 
-        /* --- Jharokha (Arched) Cards --- */
+        .hero h1 { font-family: 'Cinzel', serif; font-size: 2.5rem; color: var(--gold); margin: 10px 0; }
+        .hero h2 { font-family: 'Great Vibes', cursive; font-size: 2.2rem; color: var(--royal-red); margin: 0; }
+
+        /* --- Jharokha Cards --- */
         .event-card {
-            background: var(--glass);
+            background: rgba(255, 255, 255, 0.9);
             border: 2px solid var(--gold);
             padding: 30px;
             margin: 25px auto;
-            max-width: 350px;
-            position: relative;
-            /* Arched/Jharokha look */
-            border-radius: 100px 100px 20px 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 340px;
+            border-radius: 100px 100px 20px 20px; /* Jharokha Style */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
         }
 
-        .event-card h3 { font-family: 'Cinzel', serif; color: var(--royal-red); margin-top: 15px; }
-        .date-divider { font-family: 'Cinzel', serif; color: var(--gold); font-size: 1.2rem; margin: 40px 0 10px; font-weight: bold; text-decoration: underline; }
+        .event-card h3 { font-family: 'Cinzel', serif; color: var(--gold); margin-top: 10px; }
+        .date-label { font-family: 'Cinzel', serif; color: var(--royal-red); font-weight: bold; margin-top: 30px; }
 
-        /* --- RSVP Form --- */
-        .rsvp-section { background: var(--royal-red); color: white; padding: 60px 20px; }
-        .rsvp-section h2 { font-family: 'Cinzel', serif; color: var(--gold); }
-        .rsvp-form input, .rsvp-form select {
-            width: 100%; max-width: 300px; padding: 12px; margin: 10px 0;
-            border-radius: 5px; border: 1px solid var(--gold); font-family: 'Montserrat';
+        /* --- Family Section --- */
+        .family-section {
+            background: var(--jaipur-pink);
+            padding: 60px 20px;
+            border-top: 2px solid var(--gold);
+            border-bottom: 2px solid var(--gold);
         }
+        
+        .compliments-title { font-family: 'Cinzel', serif; color: var(--royal-red); font-size: 1.2rem; margin-bottom: 20px; }
+        .family-names { font-size: 1.1rem; line-height: 2; color: #555; }
 
+        /* --- RSVP & Buttons --- */
         .btn-gold {
             background: linear-gradient(45deg, #d4af37, #f4c430);
-            color: #4a0000; padding: 15px 40px; border-radius: 50px;
+            color: white; padding: 12px 30px; border-radius: 50px;
             text-decoration: none; display: inline-block; font-weight: bold;
-            margin-top: 20px; border: none; cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            margin-top: 15px; border: none; cursor: pointer;
         }
 
-        .timer-container { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
-        .time-box { background: var(--royal-red); color: var(--gold); padding: 10px; border: 1px solid var(--gold); border-radius: 10px; min-width: 65px; }
+        .rsvp-form input, .rsvp-form select {
+            width: 80%; max-width: 300px; padding: 12px; margin: 10px 0;
+            border: 1px solid var(--gold); border-radius: 5px;
+        }
 
-        #music-control { position: fixed; bottom: 20px; left: 20px; z-index: 1000; background: white; border-radius: 50%; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.2); cursor: pointer; }
+        #music-control { position: fixed; bottom: 20px; left: 20px; z-index: 1000; background: white; border-radius: 50%; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); cursor: pointer; }
     </style>
 </head>
 <body>
@@ -88,110 +100,97 @@
     <audio id="bg-music" loop><source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg"></audio>
 
     <section class="hero">
-        <div data-aos="fade-down" data-aos-duration="2000">
-            <img src="https://cdn-icons-png.flaticon.com/512/2900/2900223.png" width="80" alt="Ganeshji" style="margin-bottom: 20px;">
-            <h2>|| Shubh Vivah ||</h2>
-            <p>We invite you to the wedding of</p>
+        <div data-aos="fade-down">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Ganesha_Glyph.svg/1024px-Ganesha_Glyph.svg.png" class="ganesh-icon" alt="Ganeshji">
+            <div class="shlok">
+                वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ।<br>
+                निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥
+            </div>
+            <h2>We invite you to the wedding of</h2>
             <h1>Kuhu & Vaibhav</h1>
             <p style="letter-spacing: 5px; font-weight: bold; color: var(--royal-red);">09 • 03 • 2026</p>
         </div>
     </section>
 
-    <section id="events">
-        <h2 style="font-family: 'Cinzel'; color: var(--royal-red);">Programme Details</h2>
+    <section>
+        <h2 style="font-family: 'Cinzel'; color: var(--gold);">Wedding Programme</h2>
         
-        <div class="date-divider">Sunday, 8th March</div>
+        <div class="date-label">Sunday, 8th March</div>
         <div class="event-card" data-aos="zoom-in">
             <h3>🌸 Maayra</h3>
             <p>11:00 AM Onwards</p>
-            <p style="font-size: 0.8rem;">Traditional welcome and festivities</p>
         </div>
-
         <div class="event-card" data-aos="zoom-in">
             <h3>🎶 Sangeet</h3>
             <p>08:00 PM Onwards</p>
-            <p style="font-size: 0.8rem;">A night of music and celebration</p>
         </div>
 
-        <div class="date-divider">Monday, 9th March</div>
+        <div class="date-label">Monday, 9th March</div>
         <div class="event-card" data-aos="zoom-in">
             <h3>💛 Haldi</h3>
             <p>10:00 AM Onwards</p>
         </div>
-
-        <div class="event-card" data-aos="zoom-in" style="border: 3px solid var(--royal-red);">
+        <div class="event-card" data-aos="zoom-in" style="background: #fffdf0; border-width: 3px;">
             <h3>💍 Wedding & Reception</h3>
             <p>07:00 PM Onwards</p>
-            <p style="font-weight: bold; color: var(--royal-red);">Samurai Palace, Jaipur</p>
+            <p><b>Samurai Palace, Jaipur</b></p>
+            <a href="https://maps.google.com" target="_blank" class="btn-gold">📍 View Map</a>
         </div>
     </section>
 
-    <section class="rsvp-section">
-        <h2 data-aos="fade-up">RSVP</h2>
-        <p>Kindly let us know if you can join us!</p>
-        <div class="rsvp-form" data-aos="fade-up">
-            <input type="text" id="guest-name" placeholder="Your Name" required><br>
-            <select id="guest-count">
-                <option value="1">1 Guest</option>
-                <option value="2">2 Guests</option>
-                <option value="3">3 Guests</option>
-                <option value="4+">4+ Guests</option>
+    <section class="family-section" data-aos="fade-up">
+        <div class="compliments-title">With Best Compliments From:</div>
+        <div class="family-names">
+            <b>Your Grandfather's Name</b><br>
+            <b>Your Parents' Name</b><br>
+            All Relatives and Friends
+        </div>
+    </section>
+
+    <section style="padding: 60px 20px;">
+        <h2 style="font-family: 'Cinzel'; color: var(--royal-red);">RSVP</h2>
+        <div class="rsvp-form">
+            <input type="text" id="g-name" placeholder="Your Name"><br>
+            <select id="g-count">
+                <option value="1">1 Person</option>
+                <option value="2">2 Persons</option>
+                <option value="3+">3+ Persons</option>
             </select><br>
-            <button class="btn-gold" onclick="sendRSVP()">Send RSVP via WhatsApp</button>
+            <button class="btn-gold" onclick="sendWhatsApp()">Confirm RSVP</button>
         </div>
     </section>
 
-    <section>
-        <h2 style="font-family: 'Cinzel'; color: var(--gold);">The Venue</h2>
-        <p>Samurai Palace, Ajmer Road, Jaipur</p>
-        <a href="https://maps.google.com" target="_blank" class="btn-gold">📍 View on Maps</a>
-    </section>
-
-    <footer style="padding: 40px; text-align: center; border-top: 2px solid var(--gold);">
-        <p style="font-family: 'Great Vibes'; font-size: 1.5rem;">Looking forward to seeing you!</p>
+    <footer style="padding: 40px; opacity: 0.7;">
+        <p>Made with ❤️ for the Family</p>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 1000, once: true });
+        AOS.init({ duration: 1200, once: true });
 
-        function sendRSVP() {
-            const name = document.getElementById('guest-name').value;
-            const count = document.getElementById('guest-count').value;
-            if(!name) { alert("Please enter your name"); return; }
-            
-            const text = `Hi! I am ${name}. Confirmed RSVP for ${count} guest(s) for Kuhu & Vaibhav's wedding.`;
-            const phone = "91XXXXXXXXXX"; // REPLACE WITH YOUR NUMBER
-            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`);
+        function sendWhatsApp() {
+            const name = document.getElementById('g-name').value;
+            const count = document.getElementById('g-count').value;
+            if(!name) { alert("Enter your name"); return; }
+            const msg = `Hi, I am ${name}. Confirming our RSVP for ${count} guests for Kuhu & Vaibhav's wedding.`;
+            window.open(`https://wa.me/91XXXXXXXXXX?text=${encodeURIComponent(msg)}`); 
         }
-
-        // Countdown Logic
-        const weddingDate = new Date("March 9, 2026 19:00:00").getTime();
-        setInterval(() => {
-            const now = new Date().getTime();
-            const diff = weddingDate - now;
-            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((diff % (1000 * 60)) / 1000);
-            document.getElementById("countdown")?.innerHTML = `${d}d ${h}h ${m}m ${s}s`;
-        }, 1000);
 
         function toggleMusic() {
-            const music = document.getElementById("bg-music");
-            if (music.paused) music.play(); else music.pause();
+            const m = document.getElementById("bg-music");
+            if (m.paused) m.play(); else m.pause();
         }
 
-        // Floating Petals
+        // Petals Logic
         function createPetal() {
             const p = document.createElement('div');
             p.innerHTML = '🌸'; p.style.position = 'fixed'; p.style.left = Math.random()*100+'vw'; p.style.top = '-20px';
-            p.style.fontSize = (Math.random()*15+10)+'px'; p.style.opacity = Math.random();
+            p.style.fontSize = (Math.random()*15+10)+'px'; p.style.opacity = Math.random(); p.style.zIndex = '99';
             document.getElementById('petals-container').appendChild(p);
-            setTimeout(() => { p.style.transition = 'all 6s linear'; p.style.transform = `translate(30px, 100vh) rotate(360deg)`; p.style.top = '100vh'; }, 10);
+            setTimeout(() => { p.style.transition = 'all 6s linear'; p.style.transform = `translate(40px, 100vh) rotate(360deg)`; p.style.top = '100vh'; }, 10);
             setTimeout(() => p.remove(), 6000);
         }
-        setInterval(createPetal, 400);
+        setInterval(createPetal, 500);
     </script>
 </body>
 </html>
