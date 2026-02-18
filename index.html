@@ -141,40 +141,21 @@
     <section class="family-section" data-aos="fade-up">
         <div class="compliments-title">With Best Compliments From:</div>
         <div class="family-names">
-            <b>Your Grandfather's Name</b><br>
-            <b>Your Parents' Name</b><br>
-            All Relatives and Friends
+            <b>Shri Krishan Gupta</b><br>
+            <b>Naveen Gupta</b><br>
+            <b>Prakash Gupta</b><br>
+            All Harsoli Parivar
         </div>
     </section>
 
-    <section style="padding: 60px 20px;">
-        <h2 style="font-family: 'Cinzel'; color: var(--royal-red);">RSVP</h2>
-        <div class="rsvp-form">
-            <input type="text" id="g-name" placeholder="Your Name"><br>
-            <select id="g-count">
-                <option value="1">1 Person</option>
-                <option value="2">2 Persons</option>
-                <option value="3+">3+ Persons</option>
-            </select><br>
-            <button class="btn-gold" onclick="sendWhatsApp()">Confirm RSVP</button>
-        </div>
-    </section>
-
-    <footer style="padding: 40px; opacity: 0.7;">
-        <p>Made with ❤️ for the Family</p>
+  <footer style="padding: 80px 20px;">
+        <p style="font-family: 'Great Vibes'; font-size: 2rem; color: var(--royal-red);">Blessings Only.</p>
+        <p style="opacity: 0.6; font-size: 0.8rem; margin-top: 20px;">Made with ❤️ for the Family</p>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 1200, once: true });
-
-        function sendWhatsApp() {
-            const name = document.getElementById('g-name').value;
-            const count = document.getElementById('g-count').value;
-            if(!name) { alert("Enter your name"); return; }
-            const msg = `Hi, I am ${name}. Confirming our RSVP for ${count} guests for Kuhu & Vaibhav's wedding.`;
-            window.open(`https://wa.me/91XXXXXXXXXX?text=${encodeURIComponent(msg)}`); 
-        }
 
         function toggleMusic() {
             const m = document.getElementById("bg-music");
