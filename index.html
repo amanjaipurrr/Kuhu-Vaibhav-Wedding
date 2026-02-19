@@ -11,9 +11,10 @@
     <style>
         :root {
             --gold: #d4af37;
-            --royal-red: #8b0000;
-            --ivory: #fffcf9;
-            --overlay: rgba(255, 252, 249, 0.85); /* Balanced transparency */
+            --royal-red: #ff4d4d; /* Brightened slightly for dark background */
+            --dark-bg: #1a1a1a;   /* Rich dark charcoal */
+            --overlay: rgba(26, 26, 26, 0.85); /* Dark overlay */
+            --text-light: #f4f4f4;
         }
 
         * { box-sizing: border-box; }
@@ -22,14 +23,14 @@
             margin: 0;
             padding: 0;
             font-family: 'Montserrat', sans-serif;
-            background-color: var(--ivory);
+            background-color: var(--dark-bg);
             /* Background Image Setup */
             background-image: url('bg.jpg'); 
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             background-repeat: no-repeat;
-            color: #333;
+            color: var(--text-light);
             overflow-x: hidden;
         }
 
@@ -50,26 +51,28 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            border-bottom: 5px double var(--gold);
+            border-bottom: 2px solid var(--gold);
         }
 
         .ganesh-img { 
-            width: 180px; /* Increased Size */
+            width: 180px; 
             height: auto; 
             margin-bottom: 25px;
-            filter: drop-shadow(0 4px 10px rgba(212, 175, 55, 0.5));
+            /* Added a golden glow to Ganesha */
+            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.6));
         }
         
         .shlok {
             font-family: 'Tiro Devanagari Hindi', serif;
-            color: var(--royal-red);
+            color: var(--gold);
             font-size: 1.2rem;
             margin-bottom: 25px;
             line-height: 1.8;
+            opacity: 0.9;
         }
 
-        .hero h1 { font-family: 'Cinzel', serif; font-size: 2.8rem; color: var(--gold); margin: 10px 0; letter-spacing: 3px; }
-        .hero h2 { font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: var(--royal-red); margin: 0; }
+        .hero h1 { font-family: 'Cinzel', serif; font-size: 2.8rem; color: var(--gold); margin: 10px 0; letter-spacing: 3px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        .hero h2 { font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: var(--text-light); margin: 0; }
 
         /* --- Royal Schedule (Jharokha Style) --- */
         .schedule-container {
@@ -79,7 +82,6 @@
             padding: 20px;
         }
 
-        /* Center vertical gold line */
         .schedule-container::before {
             content: '';
             position: absolute;
@@ -93,8 +95,8 @@
 
         .date-header {
             font-family: 'Cinzel', serif;
-            background: var(--royal-red);
-            color: white;
+            background: var(--gold);
+            color: #1a1a1a;
             padding: 8px 30px;
             border-radius: 50px;
             display: inline-block;
@@ -103,6 +105,7 @@
             letter-spacing: 2px;
             position: relative;
             z-index: 2;
+            font-weight: bold;
         }
 
         .event-item {
@@ -112,39 +115,39 @@
         }
 
         .jharokha-content {
-            background: white;
-            border: 2px solid var(--gold);
+            background: #2a2a2a; /* Darker card */
+            border: 1px solid var(--gold);
             padding: 35px 25px;
-            border-radius: 150px 150px 20px 20px; /* Arch Shape */
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border-radius: 150px 150px 20px 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             display: inline-block;
             width: 100%;
             max-width: 300px;
             transition: 0.3s;
         }
 
-        .jharokha-content:hover { transform: scale(1.03); }
+        .jharokha-content:hover { transform: translateY(-5px); border-color: #fff; }
         .jharokha-content h3 { font-family: 'Cinzel', serif; color: var(--gold); margin: 15px 0 5px; font-size: 1.4rem; }
-        .jharokha-content p { font-weight: 500; color: #444; margin: 5px 0; }
+        .jharokha-content p { font-weight: 300; color: #ccc; margin: 5px 0; }
         .jharokha-icon { font-size: 2.5rem; }
 
         /* --- Location & Family --- */
-        .location-section { background: rgba(212, 175, 55, 0.05); padding: 100px 20px; border-top: 1px solid var(--gold); }
-        .location-card { background: white; border: 1px solid var(--gold); padding: 40px 25px; border-radius: 20px; max-width: 400px; margin: 0 auto; box-shadow: 0 15px 35px rgba(0,0,0,0.05); }
+        .location-section { background: rgba(0, 0, 0, 0.3); padding: 100px 20px; border-top: 1px solid var(--gold); }
+        .location-card { background: #2a2a2a; border: 1px solid var(--gold); padding: 40px 25px; border-radius: 20px; max-width: 400px; margin: 0 auto; }
         
         .btn-gold {
             background: linear-gradient(45deg, #d4af37, #f4c430);
-            color: white; padding: 16px 35px; border-radius: 50px;
+            color: #1a1a1a; padding: 16px 35px; border-radius: 50px;
             text-decoration: none; display: inline-block; font-weight: bold;
             margin-top: 25px; border: none; text-transform: uppercase; font-size: 0.8rem;
         }
 
-        .family-names { font-size: 1.1rem; line-height: 2.2; color: #444; }
+        .family-names { font-size: 1.1rem; line-height: 2.2; color: #ddd; }
 
         /* --- Music Button --- */
-        #music-control { position: fixed; bottom: 25px; left: 25px; z-index: 1000; background: white; border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.15); cursor: pointer; }
+        #music-control { position: fixed; bottom: 25px; left: 25px; z-index: 1000; background: var(--gold); border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #1a1a1a; }
 
-        footer { padding: 60px 20px; font-style: italic; }
+        footer { padding: 60px 20px; font-style: italic; color: #777; }
     </style>
 </head>
 <body>
@@ -164,9 +167,9 @@
                 वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ।<br>
                 निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥
             </div>
-            <h2>The Wedding of</h2>
+            <h2>The Royal Wedding of</h2>
             <h1>Kuhu & Vaibhav</h1>
-            <p style="letter-spacing: 5px; font-weight: bold; color: var(--royal-red); margin-top: 15px;">09 • 03 • 2026</p>
+            <p style="letter-spacing: 5px; font-weight: bold; color: var(--gold); margin-top: 15px;">09 • 03 • 2026</p>
         </div>
     </section>
 
@@ -206,11 +209,11 @@
             </div>
 
             <div class="event-item" data-aos="fade-up">
-                <div class="jharokha-content" style="border-color: var(--royal-red); border-width: 3px;">
+                <div class="jharokha-content" style="border-color: var(--text-light); border-width: 2px;">
                     <div class="jharokha-icon">💍</div>
-                    <h3 style="color: var(--royal-red);">Wedding</h3>
-                    <p>07:00 PM Onwards</p>
-                    <div style="color: var(--royal-red); margin-top: 10px;">👑</div>
+                    <h3 style="color: var(--gold);">Wedding</h3>
+                    <p style="color: white; font-weight: bold;">07:00 PM Onwards</p>
+                    <div style="color: var(--gold); margin-top: 10px;">👑</div>
                 </div>
             </div>
         </div>
@@ -218,16 +221,16 @@
 
     <section class="location-section">
         <div class="location-card" data-aos="zoom-in">
-            <h2 style="font-family: 'Cinzel'; color: var(--royal-red);">The Venue</h2>
+            <h2 style="font-family: 'Cinzel'; color: var(--gold);">The Venue</h2>
             <div style="font-size: 2.5rem; margin: 10px 0;">🏛️</div>
-            <h3 style="font-family: 'Cinzel';">Samurai Palace</h3>
-            <p style="color: #666;">Ajmer Road, Jaipur, Rajasthan</p>
+            <h3 style="font-family: 'Cinzel'; color: white;">Samurai Palace</h3>
+            <p style="color: #aaa;">Ajmer Road, Jaipur, Rajasthan</p>
             <a href="https://maps.google.com" target="_blank" class="btn-gold">📍 View on Maps</a>
         </div>
     </section>
 
     <section class="family-section" data-aos="fade-up">
-        <div class="date-header" style="background: none; color: var(--royal-red); border: 1px solid var(--royal-red);">With Best Compliments From:</div>
+        <div class="date-header" style="background: none; color: var(--gold); border: 1px solid var(--gold);">With Best Compliments From:</div>
         <div class="family-names">
             <b>Shri Krishan Gupta</b><br>
             <b>Naveen Gupta</b><br>
@@ -237,8 +240,8 @@
     </section>
 
     <footer data-aos="fade-in">
-        <p style="font-family: 'Great Vibes'; font-size: 2.2rem; color: var(--royal-red);">Blessings Only.</p>
-        <p style="font-size: 0.8rem; color: #999;">Created for the Gupta Family</p>
+        <p style="font-family: 'Great Vibes'; font-size: 2.2rem; color: var(--gold);">Blessings Only.</p>
+        <p style="font-size: 0.8rem;">Created for the Gupta Family</p>
     </footer>
 </div>
 
