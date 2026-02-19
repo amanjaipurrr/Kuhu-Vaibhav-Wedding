@@ -11,10 +11,9 @@
     <style>
         :root {
             --gold: #d4af37;
-            --royal-red: #ff4d4d; /* Brightened slightly for dark background */
-            --dark-bg: #1a1a1a;   /* Rich dark charcoal */
-            --overlay: rgba(26, 26, 26, 0.85); /* Dark overlay */
-            --text-light: #f4f4f4;
+            --royal-blue: #0a192f; /* Deep Midnight Blue */
+            --accent-red: #8b0000;
+            --text-gold: #f1d592;
         }
 
         * { box-sizing: border-box; }
@@ -23,26 +22,37 @@
             margin: 0;
             padding: 0;
             font-family: 'Montserrat', sans-serif;
-            background-color: var(--dark-bg);
-            /* Background Image Setup */
-            background-image: url('bg.jpg'); 
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-            color: var(--text-light);
+            background-color: var(--royal-blue);
+            /* Traditional Pattern Overlay */
+            background-image: radial-gradient(circle at 2px 2px, rgba(212, 175, 55, 0.05) 1px, transparent 0);
+            background-size: 32px 32px;
+            color: #ffffff;
             overflow-x: hidden;
         }
 
-        .content-wrapper {
-            background: var(--overlay);
+        /* Royal Border around the whole page */
+        .page-border {
+            border: 12px solid transparent;
+            border-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png') 30 stretch;
+            position: relative;
             min-height: 100vh;
-            width: 100%;
         }
 
         #petals-container { position: fixed; top: 0; width: 100%; height: 100%; pointer-events: none; z-index: 99; }
 
         section { padding: 80px 20px; text-align: center; }
+
+        /* --- Decorative Mandala Background --- */
+        .mandala-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 0;
+        }
 
         /* --- Hero Section --- */
         .hero {
@@ -51,108 +61,115 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            border-bottom: 2px solid var(--gold);
+            position: relative;
+            background: radial-gradient(circle, rgba(20, 30, 48, 1) 0%, rgba(10, 25, 47, 1) 100%);
         }
 
         .ganesh-img { 
-            width: 180px; 
+            width: 160px; 
             height: auto; 
             margin-bottom: 25px;
-            /* Added a golden glow to Ganesha */
-            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.6));
+            filter: drop-shadow(0 0 10px var(--gold));
+            z-index: 1;
         }
         
         .shlok {
             font-family: 'Tiro Devanagari Hindi', serif;
-            color: var(--gold);
-            font-size: 1.2rem;
+            color: var(--text-gold);
+            font-size: 1.1rem;
             margin-bottom: 25px;
             line-height: 1.8;
-            opacity: 0.9;
+            letter-spacing: 1px;
+            z-index: 1;
         }
 
-        .hero h1 { font-family: 'Cinzel', serif; font-size: 2.8rem; color: var(--gold); margin: 10px 0; letter-spacing: 3px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
-        .hero h2 { font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: var(--text-light); margin: 0; }
+        .hero h1 { font-family: 'Cinzel', serif; font-size: clamp(2rem, 8vw, 3.5rem); color: var(--gold); margin: 10px 0; letter-spacing: 4px; z-index: 1; }
+        .hero h2 { font-family: 'Great Vibes', cursive; font-size: clamp(1.8rem, 5vw, 2.8rem); color: #fff; margin: 0; z-index: 1; }
 
-        /* --- Royal Schedule (Jharokha Style) --- */
+        /* --- Traditional Timeline --- */
         .schedule-container {
             position: relative;
-            max-width: 600px;
+            max-width: 700px;
             margin: 40px auto;
             padding: 20px;
         }
 
-        .schedule-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            width: 1px;
-            background: linear-gradient(to bottom, transparent, var(--gold), transparent);
-            transform: translateX(-50%);
-        }
-
         .date-header {
             font-family: 'Cinzel', serif;
-            background: var(--gold);
-            color: #1a1a1a;
-            padding: 8px 30px;
-            border-radius: 50px;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 10px 40px;
+            border-radius: 0px;
             display: inline-block;
             margin: 40px 0;
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-            position: relative;
-            z-index: 2;
-            font-weight: bold;
+            font-size: 1rem;
+            letter-spacing: 3px;
+            background: rgba(212, 175, 55, 0.1);
         }
 
         .event-item {
-            position: relative;
-            margin-bottom: 50px;
-            z-index: 1;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
         }
 
-        .jharokha-content {
-            background: #2a2a2a; /* Darker card */
-            border: 1px solid var(--gold);
-            padding: 35px 25px;
-            border-radius: 150px 150px 20px 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            display: inline-block;
+        .royal-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 4px solid var(--gold);
+            border-right: 4px solid var(--gold);
+            padding: 40px 30px;
             width: 100%;
-            max-width: 300px;
-            transition: 0.3s;
+            max-width: 400px;
+            position: relative;
+            clip-path: polygon(10% 0, 90% 0, 100% 15%, 100% 85%, 90% 100%, 10% 100%, 0 85%, 0 15%);
         }
 
-        .jharokha-content:hover { transform: translateY(-5px); border-color: #fff; }
-        .jharokha-content h3 { font-family: 'Cinzel', serif; color: var(--gold); margin: 15px 0 5px; font-size: 1.4rem; }
-        .jharokha-content p { font-weight: 300; color: #ccc; margin: 5px 0; }
-        .jharokha-icon { font-size: 2.5rem; }
+        .royal-card h3 { font-family: 'Cinzel', serif; color: var(--gold); font-size: 1.6rem; margin: 10px 0; }
+        .royal-card p { font-size: 1.1rem; color: #cbd5e0; letter-spacing: 1px; }
 
-        /* --- Location & Family --- */
-        .location-section { background: rgba(0, 0, 0, 0.3); padding: 100px 20px; border-top: 1px solid var(--gold); }
-        .location-card { background: #2a2a2a; border: 1px solid var(--gold); padding: 40px 25px; border-radius: 20px; max-width: 400px; margin: 0 auto; }
-        
+        /* --- Location Section --- */
+        .location-section {
+            background: rgba(0, 0, 0, 0.2);
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .venue-title { font-family: 'Cinzel', serif; color: var(--gold); font-size: 2rem; }
+
         .btn-gold {
-            background: linear-gradient(45deg, #d4af37, #f4c430);
-            color: #1a1a1a; padding: 16px 35px; border-radius: 50px;
-            text-decoration: none; display: inline-block; font-weight: bold;
-            margin-top: 25px; border: none; text-transform: uppercase; font-size: 0.8rem;
+            background: transparent;
+            color: var(--gold);
+            padding: 14px 40px;
+            border: 1px solid var(--gold);
+            text-decoration: none;
+            display: inline-block;
+            font-weight: bold;
+            margin-top: 25px;
+            transition: all 0.4s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        .family-names { font-size: 1.1rem; line-height: 2.2; color: #ddd; }
+        .btn-gold:hover {
+            background: var(--gold);
+            color: var(--royal-blue);
+        }
 
-        /* --- Music Button --- */
-        #music-control { position: fixed; bottom: 25px; left: 25px; z-index: 1000; background: var(--gold); border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #1a1a1a; }
+        /* --- Family --- */
+        .family-names { font-size: 1.2rem; line-height: 2.4; color: var(--text-gold); font-weight: 300; }
 
-        footer { padding: 60px 20px; font-style: italic; color: #777; }
+        #music-control { 
+            position: fixed; bottom: 30px; left: 30px; z-index: 1000; 
+            background: var(--gold); width: 55px; height: 55px; 
+            display: flex; align-items: center; justify-content: center; 
+            cursor: pointer; color: #000; font-size: 20px;
+        }
+
+        footer { padding: 80px 20px; border-top: 1px solid rgba(212, 175, 55, 0.2); }
     </style>
 </head>
 <body>
 
-<div class="content-wrapper">
+<div class="page-border">
     <div id="petals-container"></div>
     <div id="music-control" onclick="toggleMusic()">🎵</div>
     
@@ -161,93 +178,87 @@
     </audio>
 
     <section class="hero">
-        <div data-aos="fade-down" data-aos-duration="1500">
+        <div data-aos="zoom-out" data-aos-duration="2000">
             <img src="ganesh.png" class="ganesh-img" alt="Shree Ganesha">
             <div class="shlok">
                 वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ।<br>
                 निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥
             </div>
-            <h2>The Royal Wedding of</h2>
+            <h2>We Cordially Invite You To The Wedding Of</h2>
             <h1>Kuhu & Vaibhav</h1>
-            <p style="letter-spacing: 5px; font-weight: bold; color: var(--gold); margin-top: 15px;">09 • 03 • 2026</p>
+            <div style="height: 2px; width: 100px; background: var(--gold); margin: 20px auto;"></div>
+            <p style="letter-spacing: 6px; font-weight: 600; color: var(--gold); font-size: 1.2rem;">09 . 03 . 2026</p>
         </div>
     </section>
 
     <section>
-        <h2 style="font-family: 'Cinzel'; color: var(--gold); font-size: 2.2rem; margin-bottom: 20px;" data-aos="fade-up">Wedding Programme</h2>
+        <h2 style="font-family: 'Cinzel'; color: var(--gold); font-size: 2.5rem; margin-bottom: 10px;" data-aos="fade-up">Wedding Programme</h2>
+        <p style="font-family: 'Great Vibes'; font-size: 1.8rem; color: #fff; margin-bottom: 40px;">Celebrations of Love</p>
         
         <div class="schedule-container">
             <div class="date-header" data-aos="fade-up">Sunday, 8th March</div>
 
-            <div class="event-item" data-aos="fade-right">
-                <div class="jharokha-content">
-                    <div class="jharokha-icon">🌸</div>
-                    <h3>Maayra</h3>
+            <div class="event-item" data-aos="fade-up">
+                <div class="royal-card">
+                    <h3>🌸 Maayra</h3>
                     <p>11:00 AM Onwards</p>
-                    <div style="color: var(--gold); margin-top: 10px;">✦ ✦ ✦</div>
                 </div>
             </div>
 
-            <div class="event-item" data-aos="fade-left">
-                <div class="jharokha-content">
-                    <div class="jharokha-icon">🎶</div>
-                    <h3>Sangeet</h3>
+            <div class="event-item" data-aos="fade-up">
+                <div class="royal-card">
+                    <h3>🎶 Sangeet</h3>
                     <p>08:00 PM Onwards</p>
-                    <div style="color: var(--gold); margin-top: 10px;">✦ ✦ ✦</div>
                 </div>
             </div>
 
             <div class="date-header" data-aos="fade-up">Monday, 9th March</div>
 
-            <div class="event-item" data-aos="fade-right">
-                <div class="jharokha-content">
-                    <div class="jharokha-icon">💛</div>
-                    <h3>Haldi</h3>
+            <div class="event-item" data-aos="fade-up">
+                <div class="royal-card">
+                    <h3>💛 Haldi</h3>
                     <p>10:00 AM Onwards</p>
-                    <div style="color: var(--gold); margin-top: 10px;">✦ ✦ ✦</div>
                 </div>
             </div>
 
             <div class="event-item" data-aos="fade-up">
-                <div class="jharokha-content" style="border-color: var(--text-light); border-width: 2px;">
-                    <div class="jharokha-icon">💍</div>
-                    <h3 style="color: var(--gold);">Wedding</h3>
-                    <p style="color: white; font-weight: bold;">07:00 PM Onwards</p>
-                    <div style="color: var(--gold); margin-top: 10px;">👑</div>
+                <div class="royal-card" style="background: rgba(212, 175, 55, 0.08); border: 1px solid var(--gold);">
+                    <h3 style="color: #fff;">💍 The Wedding</h3>
+                    <p style="color: var(--gold); font-weight: bold;">07:00 PM Onwards</p>
                 </div>
             </div>
         </div>
     </section>
 
     <section class="location-section">
-        <div class="location-card" data-aos="zoom-in">
-            <h2 style="font-family: 'Cinzel'; color: var(--gold);">The Venue</h2>
-            <div style="font-size: 2.5rem; margin: 10px 0;">🏛️</div>
-            <h3 style="font-family: 'Cinzel'; color: white;">Samurai Palace</h3>
-            <p style="color: #aaa;">Ajmer Road, Jaipur, Rajasthan</p>
-            <a href="https://maps.google.com" target="_blank" class="btn-gold">📍 View on Maps</a>
+        <div data-aos="zoom-in">
+            <h2 class="venue-title">The Venue</h2>
+            <div style="font-size: 3rem; margin: 15px 0;">🏰</div>
+            <h3 style="font-family: 'Cinzel'; font-size: 1.8rem; color: #fff; margin: 0;">Samurai Palace</h3>
+            <p style="color: var(--text-gold); font-size: 1.1rem; margin-top: 10px;">Ajmer Road, Jaipur, Rajasthan</p>
+            <a href="https://maps.google.com" target="_blank" class="btn-gold">📍 Open Navigation</a>
         </div>
     </section>
 
-    <section class="family-section" data-aos="fade-up">
-        <div class="date-header" style="background: none; color: var(--gold); border: 1px solid var(--gold);">With Best Compliments From:</div>
+    <section data-aos="fade-up">
+        <p style="font-family: 'Cinzel'; color: var(--gold); letter-spacing: 2px;">With Best Compliments From:</p>
         <div class="family-names">
             <b>Shri Krishan Gupta</b><br>
             <b>Naveen Gupta</b><br>
             <b>Prakash Gupta</b><br>
-            <b>& all harsoli family</b>
+            <b>& All Harsoli Family</b>
         </div>
     </section>
 
     <footer data-aos="fade-in">
-        <p style="font-family: 'Great Vibes'; font-size: 2.2rem; color: var(--gold);">Blessings Only.</p>
-        <p style="font-size: 0.8rem;">Created for the Gupta Family</p>
+        <p style="font-family: 'Great Vibes'; font-size: 2.5rem; color: var(--gold);">Blessings Only.</p>
+        <p style="font-size: 0.7rem; color: #555; letter-spacing: 2px; text-transform: uppercase; margin-top: 20px;">Designed for the Gupta Family</p>
     </footer>
 </div>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-    AOS.init({ duration: 1200, once: true });
+    AOS.init({ duration: 1500, once: true });
 
     function toggleMusic() {
         const m = document.getElementById("bg-music");
@@ -258,19 +269,23 @@
 
     function createPetal() {
         const p = document.createElement('div');
-        p.innerHTML = '🌸'; p.style.position = 'fixed'; 
+        const petals = ['🌸', '✨', '🍁'];
+        p.innerHTML = petals[Math.floor(Math.random() * petals.length)];
+        p.style.position = 'fixed'; 
         p.style.left = Math.random() * 100 + 'vw'; p.style.top = '-20px';
-        p.style.fontSize = (Math.random() * 15 + 10) + 'px'; p.style.opacity = Math.random();
-        p.style.zIndex = '99'; p.style.pointerEvents = 'none';
+        p.style.fontSize = (Math.random() * 15 + 10) + 'px'; 
+        p.style.opacity = Math.random();
+        p.style.zIndex = '99'; 
         document.getElementById('petals-container').appendChild(p);
+        
         setTimeout(() => { 
-            p.style.transition = 'all 6s linear'; 
-            p.style.transform = `translate(${Math.random() * 50 - 25}px, 100vh) rotate(${Math.random() * 360}deg)`;
+            p.style.transition = 'all 7s linear'; 
+            p.style.transform = `translate(${Math.random() * 100 - 50}px, 100vh) rotate(${Math.random() * 360}deg)`;
             p.style.top = '100vh'; 
         }, 10);
-        setTimeout(() => p.remove(), 6000);
+        setTimeout(() => p.remove(), 7000);
     }
-    setInterval(createPetal, 450);
+    setInterval(createPetal, 500);
 </script>
 
 </body>
