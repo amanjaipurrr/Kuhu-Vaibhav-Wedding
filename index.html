@@ -11,7 +11,7 @@
     <style>
         :root {
             --gold: #d4af37;
-            --royal-blue: #0a192f; /* Deep Midnight Blue */
+            --royal-blue: #0a192f;
             --accent-red: #8b0000;
             --text-gold: #f1d592;
         }
@@ -23,16 +23,14 @@
             padding: 0;
             font-family: 'Montserrat', sans-serif;
             background-color: var(--royal-blue);
-            /* Traditional Pattern Overlay */
             background-image: radial-gradient(circle at 2px 2px, rgba(212, 175, 55, 0.05) 1px, transparent 0);
             background-size: 32px 32px;
             color: #ffffff;
             overflow-x: hidden;
         }
 
-        /* Royal Border around the whole page */
         .page-border {
-            border: 12px solid transparent;
+            border: 10px solid transparent;
             border-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png') 30 stretch;
             position: relative;
             min-height: 100vh;
@@ -40,19 +38,7 @@
 
         #petals-container { position: fixed; top: 0; width: 100%; height: 100%; pointer-events: none; z-index: 99; }
 
-        section { padding: 80px 20px; text-align: center; }
-
-        /* --- Decorative Mandala Background --- */
-        .mandala-bg {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80%;
-            opacity: 0.05;
-            pointer-events: none;
-            z-index: 0;
-        }
+        section { padding: 60px 20px; text-align: center; }
 
         /* --- Hero Section --- */
         .hero {
@@ -61,79 +47,96 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            position: relative;
             background: radial-gradient(circle, rgba(20, 30, 48, 1) 0%, rgba(10, 25, 47, 1) 100%);
         }
 
         .ganesh-img { 
-            width: 160px; 
+            width: 180px; 
             height: auto; 
             margin-bottom: 25px;
-            filter: drop-shadow(0 0 10px var(--gold));
-            z-index: 1;
+            filter: drop-shadow(0 0 15px var(--gold));
         }
         
         .shlok {
             font-family: 'Tiro Devanagari Hindi', serif;
             color: var(--text-gold);
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             margin-bottom: 25px;
             line-height: 1.8;
-            letter-spacing: 1px;
-            z-index: 1;
         }
 
-        .hero h1 { font-family: 'Cinzel', serif; font-size: clamp(2rem, 8vw, 3.5rem); color: var(--gold); margin: 10px 0; letter-spacing: 4px; z-index: 1; }
-        .hero h2 { font-family: 'Great Vibes', cursive; font-size: clamp(1.8rem, 5vw, 2.8rem); color: #fff; margin: 0; z-index: 1; }
+        .hero h1 { font-family: 'Cinzel', serif; font-size: clamp(2.5rem, 8vw, 4rem); color: var(--gold); margin: 10px 0; letter-spacing: 4px; }
+        .hero h2 { font-family: 'Great Vibes', cursive; font-size: clamp(2rem, 5vw, 3rem); color: #fff; margin: 0; }
 
-        /* --- Traditional Timeline --- */
+        /* --- Caricature Schedule Section --- */
         .schedule-container {
             position: relative;
-            max-width: 700px;
+            max-width: 900px;
             margin: 40px auto;
-            padding: 20px;
         }
 
         .date-header {
             font-family: 'Cinzel', serif;
-            border: 1px solid var(--gold);
             color: var(--gold);
-            padding: 10px 40px;
-            border-radius: 0px;
+            padding: 15px 50px;
             display: inline-block;
-            margin: 40px 0;
-            font-size: 1rem;
-            letter-spacing: 3px;
-            background: rgba(212, 175, 55, 0.1);
+            margin: 50px 0 30px;
+            font-size: 1.2rem;
+            letter-spacing: 4px;
+            border-bottom: 2px solid var(--gold);
         }
 
-        .event-item {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 40px;
+        .event-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            padding: 20px;
         }
 
-        .royal-card {
-            background: rgba(255, 255, 255, 0.03);
-            border-left: 4px solid var(--gold);
-            border-right: 4px solid var(--gold);
-            padding: 40px 30px;
-            width: 100%;
-            max-width: 400px;
+        .ritual-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 20px;
+            padding: 40px 20px;
+            transition: all 0.4s ease;
             position: relative;
-            clip-path: polygon(10% 0, 90% 0, 100% 15%, 100% 85%, 90% 100%, 10% 100%, 0 85%, 0 15%);
+            overflow: hidden;
         }
 
-        .royal-card h3 { font-family: 'Cinzel', serif; color: var(--gold); font-size: 1.6rem; margin: 10px 0; }
-        .royal-card p { font-size: 1.1rem; color: #cbd5e0; letter-spacing: 1px; }
+        .ritual-card:hover {
+            transform: translateY(-10px);
+            background: rgba(212, 175, 55, 0.1);
+            border-color: var(--gold);
+        }
+
+        /* Large Caricature Styling */
+        .caricature-img {
+            width: 220px; /* Increased size */
+            height: 220px;
+            object-fit: contain;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+        }
+
+        .ritual-card h3 { 
+            font-family: 'Cinzel', serif; 
+            color: var(--gold); 
+            font-size: 1.8rem; 
+            margin: 15px 0 5px; 
+        }
+
+        .ritual-card p { 
+            font-size: 1.2rem; 
+            color: #ddd; 
+            font-weight: 300;
+        }
 
         /* --- Location Section --- */
         .location-section {
-            background: rgba(0, 0, 0, 0.2);
-            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            background: rgba(0, 0, 0, 0.3);
+            margin-top: 50px;
+            padding: 100px 20px;
         }
-
-        .venue-title { font-family: 'Cinzel', serif; color: var(--gold); font-size: 2rem; }
 
         .btn-gold {
             background: transparent;
@@ -149,22 +152,18 @@
             letter-spacing: 2px;
         }
 
-        .btn-gold:hover {
-            background: var(--gold);
-            color: var(--royal-blue);
-        }
+        .btn-gold:hover { background: var(--gold); color: var(--royal-blue); }
 
-        /* --- Family --- */
-        .family-names { font-size: 1.2rem; line-height: 2.4; color: var(--text-gold); font-weight: 300; }
+        .family-names { font-size: 1.3rem; line-height: 2.5; color: var(--text-gold); }
 
         #music-control { 
             position: fixed; bottom: 30px; left: 30px; z-index: 1000; 
-            background: var(--gold); width: 55px; height: 55px; 
-            display: flex; align-items: center; justify-content: center; 
-            cursor: pointer; color: #000; font-size: 20px;
+            background: var(--gold); width: 60px; height: 60px; 
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+            cursor: pointer; color: #000; font-size: 24px; box-shadow: 0 0 20px rgba(212,175,55,0.4);
         }
 
-        footer { padding: 80px 20px; border-top: 1px solid rgba(212, 175, 55, 0.2); }
+        footer { padding: 80px 20px; border-top: 1px solid rgba(212, 175, 55, 0.1); }
     </style>
 </head>
 <body>
@@ -178,52 +177,51 @@
     </audio>
 
     <section class="hero">
-        <div data-aos="zoom-out" data-aos-duration="2000">
+        <div data-aos="fade-up" data-aos-duration="2000">
             <img src="ganesh.png" class="ganesh-img" alt="Shree Ganesha">
             <div class="shlok">
                 वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ।<br>
                 निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥
             </div>
-            <h2>We Cordially Invite You To The Wedding Of</h2>
+            <h2>Shree Ganeshaya Namah</h2>
             <h1>Kuhu & Vaibhav</h1>
-            <div style="height: 2px; width: 100px; background: var(--gold); margin: 20px auto;"></div>
-            <p style="letter-spacing: 6px; font-weight: 600; color: var(--gold); font-size: 1.2rem;">09 . 03 . 2026</p>
+            <div style="height: 2px; width: 150px; background: var(--gold); margin: 25px auto;"></div>
+            <p style="letter-spacing: 8px; font-weight: 600; color: var(--gold); font-size: 1.4rem;">09 . 03 . 2026</p>
         </div>
     </section>
 
     <section>
-        <h2 style="font-family: 'Cinzel'; color: var(--gold); font-size: 2.5rem; margin-bottom: 10px;" data-aos="fade-up">Wedding Programme</h2>
-        <p style="font-family: 'Great Vibes'; font-size: 1.8rem; color: #fff; margin-bottom: 40px;">Celebrations of Love</p>
+        <h2 style="font-family: 'Cinzel'; color: var(--gold); font-size: 3rem;" data-aos="fade-down">The Wedding Rituals</h2>
         
         <div class="schedule-container">
             <div class="date-header" data-aos="fade-up">Sunday, 8th March</div>
-
-            <div class="event-item" data-aos="fade-up">
-                <div class="royal-card">
-                    <h3>🌸 Maayra</h3>
+            
+            <div class="event-grid">
+                <div class="ritual-card" data-aos="zoom-in">
+                    <img src="maayra.png" alt="Maayra Caricature" class="caricature-img">
+                    <h3>Maayra</h3>
                     <p>11:00 AM Onwards</p>
                 </div>
-            </div>
 
-            <div class="event-item" data-aos="fade-up">
-                <div class="royal-card">
-                    <h3>🎶 Sangeet</h3>
+                <div class="ritual-card" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="sangeet.png" alt="Sangeet Caricature" class="caricature-img">
+                    <h3>Sangeet</h3>
                     <p>08:00 PM Onwards</p>
                 </div>
             </div>
 
             <div class="date-header" data-aos="fade-up">Monday, 9th March</div>
 
-            <div class="event-item" data-aos="fade-up">
-                <div class="royal-card">
-                    <h3>💛 Haldi</h3>
+            <div class="event-grid">
+                <div class="ritual-card" data-aos="zoom-in">
+                    <img src="haldi.png" alt="Haldi Caricature" class="caricature-img">
+                    <h3>Haldi</h3>
                     <p>10:00 AM Onwards</p>
                 </div>
-            </div>
 
-            <div class="event-item" data-aos="fade-up">
-                <div class="royal-card" style="background: rgba(212, 175, 55, 0.08); border: 1px solid var(--gold);">
-                    <h3 style="color: #fff;">💍 The Wedding</h3>
+                <div class="ritual-card" data-aos="zoom-in" data-aos-delay="200" style="background: rgba(212, 175, 55, 0.15);">
+                    <img src="wedding.png" alt="Wedding Caricature" class="caricature-img">
+                    <h3 style="color: #fff;">The Wedding</h3>
                     <p style="color: var(--gold); font-weight: bold;">07:00 PM Onwards</p>
                 </div>
             </div>
@@ -231,17 +229,17 @@
     </section>
 
     <section class="location-section">
-        <div data-aos="zoom-in">
-            <h2 class="venue-title">The Venue</h2>
-            <div style="font-size: 3rem; margin: 15px 0;">🏰</div>
-            <h3 style="font-family: 'Cinzel'; font-size: 1.8rem; color: #fff; margin: 0;">Samurai Palace</h3>
-            <p style="color: var(--text-gold); font-size: 1.1rem; margin-top: 10px;">Ajmer Road, Jaipur, Rajasthan</p>
-            <a href="https://maps.google.com" target="_blank" class="btn-gold">📍 Open Navigation</a>
+        <div data-aos="fade-up">
+            <h2 style="font-family: 'Cinzel'; color: var(--gold); font-size: 2.5rem;">The Venue</h2>
+            <div style="font-size: 4rem; margin: 20px 0;">🏰</div>
+            <h3 style="font-family: 'Cinzel'; font-size: 2rem; color: #fff; margin: 0;">Samurai Palace</h3>
+            <p style="color: var(--text-gold); font-size: 1.2rem; margin-top: 10px;">Ajmer Road, Jaipur, Rajasthan</p>
+            <a href="https://maps.google.com" target="_blank" class="btn-gold">📍 Navigate to Palace</a>
         </div>
     </section>
 
     <section data-aos="fade-up">
-        <p style="font-family: 'Cinzel'; color: var(--gold); letter-spacing: 2px;">With Best Compliments From:</p>
+        <p style="font-family: 'Cinzel'; color: var(--gold); letter-spacing: 3px; font-size: 1.2rem;">With Best Compliments From:</p>
         <div class="family-names">
             <b>Shri Krishan Gupta</b><br>
             <b>Naveen Gupta</b><br>
@@ -251,8 +249,8 @@
     </section>
 
     <footer data-aos="fade-in">
-        <p style="font-family: 'Great Vibes'; font-size: 2.5rem; color: var(--gold);">Blessings Only.</p>
-        <p style="font-size: 0.7rem; color: #555; letter-spacing: 2px; text-transform: uppercase; margin-top: 20px;">Designed for the Gupta Family</p>
+        <p style="font-family: 'Great Vibes'; font-size: 3rem; color: var(--gold);">Blessings Only.</p>
+        <p style="font-size: 0.8rem; color: #555; letter-spacing: 3px; text-transform: uppercase; margin-top: 20px;">Handcrafted for the Gupta Family Wedding</p>
     </footer>
 </div>
 
@@ -267,25 +265,26 @@
         else { m.pause(); btn.innerHTML = "🎵"; }
     }
 
+    // Traditional Petals Effect
     function createPetal() {
         const p = document.createElement('div');
-        const petals = ['🌸', '✨', '🍁'];
-        p.innerHTML = petals[Math.floor(Math.random() * petals.length)];
+        const items = ['🌸', '✨', '💛', '🍁'];
+        p.innerHTML = items[Math.floor(Math.random() * items.length)];
         p.style.position = 'fixed'; 
         p.style.left = Math.random() * 100 + 'vw'; p.style.top = '-20px';
-        p.style.fontSize = (Math.random() * 15 + 10) + 'px'; 
+        p.style.fontSize = (Math.random() * 20 + 10) + 'px'; 
         p.style.opacity = Math.random();
         p.style.zIndex = '99'; 
         document.getElementById('petals-container').appendChild(p);
         
         setTimeout(() => { 
-            p.style.transition = 'all 7s linear'; 
-            p.style.transform = `translate(${Math.random() * 100 - 50}px, 100vh) rotate(${Math.random() * 360}deg)`;
+            p.style.transition = 'all 8s linear'; 
+            p.style.transform = `translate(${Math.random() * 100 - 50}px, 100vh) rotate(${Math.random() * 720}deg)`;
             p.style.top = '100vh'; 
         }, 10);
-        setTimeout(() => p.remove(), 7000);
+        setTimeout(() => p.remove(), 8000);
     }
-    setInterval(createPetal, 500);
+    setInterval(createPetal, 400);
 </script>
 
 </body>
