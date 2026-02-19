@@ -3,19 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kuhu 
-        &
-        Vaibhav | The Royal Wedding</title>
+    <title>Kuhu & Vaibhav | The Royal Wedding</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@300;400;600&family=Great+Vibes&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
         :root {
-            --gold: #d4af37;
-            --royal-blue: #0a192f;
-            --accent-red: #8b0000;
-            --text-gold: #f1d592;
+            --royal-red: #8b0000;      /* Deep Maroon */
+            --bright-red: #b22222;     /* Firebrick */
+            --gold: #d4af37;           /* Metallic Gold */
+            --light-gold: #f1d592;     /* Silk Gold */
         }
 
         * { box-sizing: border-box; }
@@ -24,32 +22,45 @@
             margin: 0;
             padding: 0;
             font-family: 'Montserrat', sans-serif;
-            background-color: var(--royal-blue);
-            background-image: radial-gradient(circle at 2px 2px, rgba(212, 175, 55, 0.05) 1px, transparent 0);
-            background-size: 32px 32px;
+            /* Traditional Red Silk Background Effect */
+            background: radial-gradient(circle at center, var(--bright-red) 0%, var(--royal-red) 100%);
             color: #ffffff;
             overflow-x: hidden;
         }
 
-        .page-border {
-            border: 10px solid transparent;
-            border-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png') 30 stretch;
+        /* Gold Border around the entire page */
+        .page-frame {
+            border: 8px double var(--gold);
+            margin: 10px;
             position: relative;
             min-height: 100vh;
         }
 
+        /* Traditional Toran (Hanging Leaves) Effect at top */
+        .toran {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background-image: url('https://www.transparenttextures.com/patterns/pinstripe.png'); /* Subtle texture */
+            display: flex;
+            justify-content: space-around;
+            z-index: 10;
+        }
+
         #petals-container { position: fixed; top: 0; width: 100%; height: 100%; pointer-events: none; z-index: 99; }
 
-        section { padding: 60px 20px; text-align: center; }
+        section { padding: 80px 20px; text-align: center; }
 
         /* --- Hero Section --- */
         .hero {
-            min-height: 100vh;
+            min-height: 90vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: radial-gradient(circle, rgba(20, 30, 48, 1) 0%, rgba(10, 25, 47, 1) 100%);
+            position: relative;
         }
 
         .ganesh-img { 
@@ -57,120 +68,109 @@
             height: auto; 
             margin-bottom: 25px;
             filter: drop-shadow(0 0 15px var(--gold));
+            z-index: 2;
         }
         
         .shlok {
             font-family: 'Tiro Devanagari Hindi', serif;
-            color: var(--text-gold);
+            color: var(--light-gold);
             font-size: 1.2rem;
             margin-bottom: 25px;
             line-height: 1.8;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
-        .hero h1 { font-family: 'Cinzel', serif; font-size: clamp(2.5rem, 8vw, 4rem); color: var(--gold); margin: 10px 0; letter-spacing: 4px; }
+        .hero h1 { font-family: 'Cinzel', serif; font-size: clamp(2.5rem, 8vw, 4rem); color: var(--gold); margin: 10px 0; letter-spacing: 4px; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
         .hero h2 { font-family: 'Great Vibes', cursive; font-size: clamp(2rem, 5vw, 3rem); color: #fff; margin: 0; }
 
-        /* --- Caricature Schedule Section --- */
+        /* --- Ritual Cards --- */
         .schedule-container {
-            position: relative;
-            max-width: 900px;
-            margin: 40px auto;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
         .date-header {
             font-family: 'Cinzel', serif;
-            color: var(--gold);
-            padding: 15px 50px;
+            background: var(--gold);
+            color: var(--royal-red);
+            padding: 10px 40px;
+            border-radius: 50px 50px 0 0;
             display: inline-block;
-            margin: 50px 0 30px;
-            font-size: 1.2rem;
-            letter-spacing: 4px;
-            border-bottom: 2px solid var(--gold);
+            margin: 50px 0 0;
+            font-size: 1.1rem;
+            font-weight: bold;
+            letter-spacing: 2px;
         }
 
         .event-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
             padding: 20px;
         }
 
         .ritual-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border: 2px solid var(--gold);
             padding: 40px 20px;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
+            transition: 0.4s;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
         .ritual-card:hover {
-            transform: translateY(-10px);
             background: rgba(212, 175, 55, 0.1);
-            border-color: var(--gold);
+            transform: scale(1.02);
         }
 
-        /* Large Caricature Styling */
         .caricature-img {
-            width: 220px; /* Increased size */
-            height: 220px;
-            object-fit: contain;
-            margin-bottom: 20px;
-            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+            width: 250px; /* Increased Size */
+            height: auto;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.4));
         }
 
-        .ritual-card h3 { 
-            font-family: 'Cinzel', serif; 
-            color: var(--gold); 
-            font-size: 1.8rem; 
-            margin: 15px 0 5px; 
-        }
-
-        .ritual-card p { 
-            font-size: 1.2rem; 
-            color: #ddd; 
-            font-weight: 300;
-        }
+        .ritual-card h3 { font-family: 'Cinzel', serif; color: var(--gold); font-size: 1.8rem; margin: 10px 0; }
+        .ritual-card p { font-size: 1.2rem; color: #fff; font-weight: 300; }
 
         /* --- Location Section --- */
         .location-section {
-            background: rgba(0, 0, 0, 0.3);
-            margin-top: 50px;
-            padding: 100px 20px;
+            background: rgba(212, 175, 55, 0.1);
+            border-top: 2px solid var(--gold);
+            border-bottom: 2px solid var(--gold);
         }
 
         .btn-gold {
-            background: transparent;
-            color: var(--gold);
-            padding: 14px 40px;
-            border: 1px solid var(--gold);
+            background: var(--gold);
+            color: var(--royal-red);
+            padding: 15px 45px;
             text-decoration: none;
             display: inline-block;
             font-weight: bold;
             margin-top: 25px;
-            transition: all 0.4s;
+            border-radius: 5px;
             text-transform: uppercase;
             letter-spacing: 2px;
+            transition: 0.3s;
         }
 
-        .btn-gold:hover { background: var(--gold); color: var(--royal-blue); }
+        .btn-gold:hover { background: #fff; color: var(--royal-red); }
 
-        .family-names { font-size: 1.3rem; line-height: 2.5; color: var(--text-gold); }
+        .family-names { font-size: 1.3rem; line-height: 2.5; color: var(--light-gold); text-shadow: 1px 1px 2px #000; }
 
         #music-control { 
             position: fixed; bottom: 30px; left: 30px; z-index: 1000; 
-            background: var(--gold); width: 60px; height: 60px; 
+            background: #fff; width: 60px; height: 60px; 
             border-radius: 50%; display: flex; align-items: center; justify-content: center; 
-            cursor: pointer; color: #000; font-size: 24px; box-shadow: 0 0 20px rgba(212,175,55,0.4);
+            cursor: pointer; color: var(--royal-red); font-size: 24px; box-shadow: 0 0 15px rgba(0,0,0,0.3);
         }
 
-        footer { padding: 80px 20px; border-top: 1px solid rgba(212, 175, 55, 0.1); }
+        footer { padding: 80px 20px; background: rgba(0,0,0,0.2); }
     </style>
 </head>
 <body>
 
-<div class="page-border">
+<div class="page-frame">
     <div id="petals-container"></div>
     <div id="music-control" onclick="toggleMusic()">🎵</div>
     
@@ -179,51 +179,51 @@
     </audio>
 
     <section class="hero">
-        <div data-aos="fade-up" data-aos-duration="2000">
+        <div data-aos="zoom-in" data-aos-duration="2000">
             <img src="ganesh.png" class="ganesh-img" alt="Shree Ganesha">
             <div class="shlok">
                 वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ।<br>
                 निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥
             </div>
-            <h2>Shree Ganeshaya Namah</h2>
+            <h2>We Welcome You To The Wedding Of</h2>
             <h1>Kuhu & Vaibhav</h1>
-            <div style="height: 2px; width: 150px; background: var(--gold); margin: 25px auto;"></div>
-            <p style="letter-spacing: 8px; font-weight: 600; color: var(--gold); font-size: 1.4rem;">09 . 03 . 2026</p>
+            <div style="height: 3px; width: 120px; background: var(--gold); margin: 20px auto;"></div>
+            <p style="letter-spacing: 8px; font-weight: 600; color: var(--light-gold); font-size: 1.4rem;">09 . 03 . 2026</p>
         </div>
     </section>
 
     <section>
-        <h2 style="font-family: 'Cinzel'; color: var(--gold); font-size: 3rem;" data-aos="fade-down">The Wedding Rituals</h2>
+        <h2 style="font-family: 'Cinzel'; color: var(--gold); font-size: 3rem;" data-aos="fade-up">Program Details</h2>
         
         <div class="schedule-container">
-            <div class="date-header" data-aos="fade-up">Sunday, 8th March</div>
+            <div class="date-header" data-aos="fade-right">Sunday, 8th March</div>
             
             <div class="event-grid">
-                <div class="ritual-card" data-aos="zoom-in">
-                    <img src="maayra.png" alt="Maayra Caricature" class="caricature-img">
+                <div class="ritual-card" data-aos="fade-up">
+                    <img src="maayra.png" alt="Maayra" class="caricature-img">
                     <h3>Maayra</h3>
                     <p>11:00 AM Onwards</p>
                 </div>
 
-                <div class="ritual-card" data-aos="zoom-in" data-aos-delay="200">
-                    <img src="sangeet.png" alt="Sangeet Caricature" class="caricature-img">
+                <div class="ritual-card" data-aos="fade-up" data-aos-delay="200">
+                    <img src="sangeet.png" alt="Sangeet" class="caricature-img">
                     <h3>Sangeet</h3>
                     <p>08:00 PM Onwards</p>
                 </div>
             </div>
 
-            <div class="date-header" data-aos="fade-up">Monday, 9th March</div>
+            <div class="date-header" data-aos="fade-left">Monday, 9th March</div>
 
             <div class="event-grid">
-                <div class="ritual-card" data-aos="zoom-in">
-                    <img src="haldi.png" alt="Haldi Caricature" class="caricature-img">
+                <div class="ritual-card" data-aos="fade-up">
+                    <img src="haldi.png" alt="Haldi" class="caricature-img">
                     <h3>Haldi</h3>
                     <p>10:00 AM Onwards</p>
                 </div>
 
-                <div class="ritual-card" data-aos="zoom-in" data-aos-delay="200" style="background: rgba(212, 175, 55, 0.15);">
-                    <img src="wedding.png" alt="Wedding Caricature" class="caricature-img">
-                    <h3 style="color: #fff;">The Wedding</h3>
+                <div class="ritual-card" data-aos="fade-up" data-aos-delay="200" style="border-width: 4px;">
+                    <img src="wedding.png" alt="Wedding" class="caricature-img">
+                    <h3 style="color: white;">The Wedding</h3>
                     <p style="color: var(--gold); font-weight: bold;">07:00 PM Onwards</p>
                 </div>
             </div>
@@ -231,12 +231,12 @@
     </section>
 
     <section class="location-section">
-        <div data-aos="fade-up">
+        <div data-aos="zoom-in">
             <h2 style="font-family: 'Cinzel'; color: var(--gold); font-size: 2.5rem;">The Venue</h2>
             <div style="font-size: 4rem; margin: 20px 0;">🏰</div>
-            <h3 style="font-family: 'Cinzel'; font-size: 2rem; color: #fff; margin: 0;">Samurai Palace</h3>
-            <p style="color: var(--text-gold); font-size: 1.2rem; margin-top: 10px;">Ajmer Road, Jaipur, Rajasthan</p>
-            <a href="https://maps.app.goo.gl/jWe7VEwc4vHodSaA7" target="_blank" class="btn-gold">📍 Navigate to Palace</a>
+            <h3 style="font-family: 'Cinzel'; font-size: 2.2rem; color: #fff; margin: 0;">Samurai Palace</h3>
+            <p style="color: var(--light-gold); font-size: 1.2rem; margin-top: 10px;">Ajmer Road, Jaipur, Rajasthan</p>
+            <a href="https://maps.google.com" target="_blank" class="btn-gold">📍 View Location Map</a>
         </div>
     </section>
 
@@ -252,7 +252,7 @@
 
     <footer data-aos="fade-in">
         <p style="font-family: 'Great Vibes'; font-size: 3rem; color: var(--gold);">Blessings Only.</p>
-        <p style="font-size: 0.8rem; color: #555; letter-spacing: 3px; text-transform: uppercase; margin-top: 20px;">Handcrafted for the Gupta Family Wedding</p>
+        <p style="font-size: 0.8rem; color: var(--light-gold); letter-spacing: 3px;">ROYAL WEDDING INVITATION</p>
     </footer>
 </div>
 
@@ -267,10 +267,10 @@
         else { m.pause(); btn.innerHTML = "🎵"; }
     }
 
-    // Traditional Petals Effect
+    // Hindu Wedding Elements (Marigold petals and sparkles)
     function createPetal() {
         const p = document.createElement('div');
-        const items = ['🌸', '✨', '💛', '🍁'];
+        const items = ['🌸', '✨', '🌼', '🔸'];
         p.innerHTML = items[Math.floor(Math.random() * items.length)];
         p.style.position = 'fixed'; 
         p.style.left = Math.random() * 100 + 'vw'; p.style.top = '-20px';
@@ -281,7 +281,7 @@
         
         setTimeout(() => { 
             p.style.transition = 'all 8s linear'; 
-            p.style.transform = `translate(${Math.random() * 100 - 50}px, 100vh) rotate(${Math.random() * 720}deg)`;
+            p.style.transform = `translate(${Math.random() * 100 - 50}px, 100vh) rotate(${Math.random() * 360}deg)`;
             p.style.top = '100vh'; 
         }, 10);
         setTimeout(() => p.remove(), 8000);
@@ -291,5 +291,3 @@
 
 </body>
 </html>
-
-
