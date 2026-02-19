@@ -6,7 +6,6 @@
     <title>Kuhu & Vaibhav | The Royal Wedding</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@300;400;600&family=Great+Vibes&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
-    
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
@@ -14,27 +13,26 @@
             --gold: #d4af37;
             --royal-red: #8b0000;
             --ivory: #fffcf9;
-            --overlay: rgba(255, 252, 249, 0.88); /* Adjust transparency of the white layer here */
+            --overlay: rgba(255, 252, 249, 0.85); /* Balanced transparency */
         }
 
         * { box-sizing: border-box; }
 
         body {
             margin: 0;
+            padding: 0;
             font-family: 'Montserrat', sans-serif;
             background-color: var(--ivory);
-            
-            /* --- METHOD A: BACKGROUND IMAGE --- */
+            /* Background Image Setup */
             background-image: url('bg.jpg'); 
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            
+            background-repeat: no-repeat;
             color: #333;
             overflow-x: hidden;
         }
 
-        /* This wrapper ensures the background image stays visible while keeping text readable */
         .content-wrapper {
             background: var(--overlay);
             min-height: 100vh;
@@ -43,9 +41,9 @@
 
         #petals-container { position: fixed; top: 0; width: 100%; height: 100%; pointer-events: none; z-index: 99; }
 
-        /* --- Sections Layout --- */
         section { padding: 80px 20px; text-align: center; }
 
+        /* --- Hero Section --- */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -55,114 +53,104 @@
             border-bottom: 5px double var(--gold);
         }
 
-        /* --- Ganesh Icon Styling --- */
         .ganesh-img { 
-            width: 100px; 
+            width: 180px; /* Increased Size */
             height: auto; 
-            margin-bottom: 20px;
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+            margin-bottom: 25px;
+            filter: drop-shadow(0 4px 10px rgba(212, 175, 55, 0.5));
         }
         
         .shlok {
             font-family: 'Tiro Devanagari Hindi', serif;
             color: var(--royal-red);
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             margin-bottom: 25px;
             line-height: 1.8;
-            max-width: 90%;
         }
 
-        .hero h1 { font-family: 'Cinzel', serif; font-size: 2.4rem; color: var(--gold); margin: 10px 0; text-transform: uppercase; letter-spacing: 2px; }
-        .hero h2 { font-family: 'Great Vibes', cursive; font-size: 2.2rem; color: var(--royal-red); margin: 0; }
+        .hero h1 { font-family: 'Cinzel', serif; font-size: 2.8rem; color: var(--gold); margin: 10px 0; letter-spacing: 3px; }
+        .hero h2 { font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: var(--royal-red); margin: 0; }
 
-        /* --- Schedule Cards (Jharokha Style) --- */
-        .event-card {
+        /* --- Royal Schedule (Jharokha Style) --- */
+        .schedule-container {
+            position: relative;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        /* Center vertical gold line */
+        .schedule-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+            transform: translateX(-50%);
+        }
+
+        .date-header {
+            font-family: 'Cinzel', serif;
+            background: var(--royal-red);
+            color: white;
+            padding: 8px 30px;
+            border-radius: 50px;
+            display: inline-block;
+            margin: 40px 0;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .event-item {
+            position: relative;
+            margin-bottom: 50px;
+            z-index: 1;
+        }
+
+        .jharokha-content {
             background: white;
             border: 2px solid var(--gold);
-            padding: 30px;
-            margin: 25px auto;
-            max-width: 350px;
-            border-radius: 100px 100px 20px 20px;
+            padding: 35px 25px;
+            border-radius: 150px 150px 20px 20px; /* Arch Shape */
             box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            display: inline-block;
+            width: 100%;
+            max-width: 300px;
+            transition: 0.3s;
         }
 
-        .event-card h3 { font-family: 'Cinzel', serif; color: var(--gold); margin-top: 10px; margin-bottom: 5px; }
-        .event-card p { margin: 5px 0; font-weight: 500; }
+        .jharokha-content:hover { transform: scale(1.03); }
+        .jharokha-content h3 { font-family: 'Cinzel', serif; color: var(--gold); margin: 15px 0 5px; font-size: 1.4rem; }
+        .jharokha-content p { font-weight: 500; color: #444; margin: 5px 0; }
+        .jharokha-icon { font-size: 2.5rem; }
+
+        /* --- Location & Family --- */
+        .location-section { background: rgba(212, 175, 55, 0.05); padding: 100px 20px; border-top: 1px solid var(--gold); }
+        .location-card { background: white; border: 1px solid var(--gold); padding: 40px 25px; border-radius: 20px; max-width: 400px; margin: 0 auto; box-shadow: 0 15px 35px rgba(0,0,0,0.05); }
         
-        .date-label { 
-            font-family: 'Cinzel', serif; 
-            color: var(--royal-red); 
-            font-weight: bold; 
-            margin-top: 40px; 
-            display: block;
-            letter-spacing: 2px;
-        }
-
-        /* --- Dedicated Location Section --- */
-        .location-section {
-            background: rgba(212, 175, 55, 0.1);
-            padding: 100px 20px;
-            border-top: 2px solid var(--gold);
-            border-bottom: 2px solid var(--gold);
-        }
-
-        .location-card {
-            background: white;
-            border: 1px solid var(--gold);
-            padding: 40px 25px;
-            border-radius: 20px;
-            max-width: 400px;
-            margin: 0 auto;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
-        }
-
         .btn-gold {
             background: linear-gradient(45deg, #d4af37, #f4c430);
-            color: white; 
-            padding: 16px 35px; 
-            border-radius: 50px;
-            text-decoration: none; 
-            display: inline-block; 
-            font-weight: bold;
-            margin-top: 25px; 
-            border: none; 
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
-            text-transform: uppercase;
-            font-size: 0.9rem;
+            color: white; padding: 16px 35px; border-radius: 50px;
+            text-decoration: none; display: inline-block; font-weight: bold;
+            margin-top: 25px; border: none; text-transform: uppercase; font-size: 0.8rem;
         }
 
-        /* --- Family Section --- */
-        .family-section { padding: 80px 20px; }
-        .compliments-title { font-family: 'Cinzel', serif; color: var(--royal-red); font-size: 1.3rem; margin-bottom: 25px; }
-        .family-names { font-size: 1.15rem; line-height: 2.2; color: #444; }
+        .family-names { font-size: 1.1rem; line-height: 2.2; color: #444; }
 
-        /* --- Music Control Button --- */
-        #music-control { 
-            position: fixed; 
-            bottom: 25px; 
-            left: 25px; 
-            z-index: 1000; 
-            background: white; 
-            border-radius: 50%; 
-            width: 50px; 
-            height: 50px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15); 
-            cursor: pointer;
-            font-size: 20px;
-        }
+        /* --- Music Button --- */
+        #music-control { position: fixed; bottom: 25px; left: 25px; z-index: 1000; background: white; border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.15); cursor: pointer; }
 
-        footer { padding: 60px 20px; opacity: 0.8; font-style: italic; }
+        footer { padding: 60px 20px; font-style: italic; }
     </style>
 </head>
 <body>
 
 <div class="content-wrapper">
     <div id="petals-container"></div>
-    
     <div id="music-control" onclick="toggleMusic()">🎵</div>
     
     <audio id="bg-music" loop>
@@ -172,112 +160,115 @@
     <section class="hero">
         <div data-aos="fade-down" data-aos-duration="1500">
             <img src="ganesh.png" class="ganesh-img" alt="Shree Ganesha">
-            
             <div class="shlok">
                 वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ।<br>
                 निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥
             </div>
-            <h2>We invite you to the wedding of</h2>
+            <h2>The Wedding of</h2>
             <h1>Kuhu & Vaibhav</h1>
             <p style="letter-spacing: 5px; font-weight: bold; color: var(--royal-red); margin-top: 15px;">09 • 03 • 2026</p>
         </div>
     </section>
 
     <section>
-        <h2 style="font-family: 'Cinzel'; color: var(--gold); margin-bottom: 20px;" data-aos="fade-up">Wedding Programme</h2>
+        <h2 style="font-family: 'Cinzel'; color: var(--gold); font-size: 2.2rem; margin-bottom: 20px;" data-aos="fade-up">Wedding Programme</h2>
         
-        <div class="date-label" data-aos="fade-up">Sunday, 8th March</div>
-        
-        <div class="event-card" data-aos="zoom-in">
-            <h3>🌸 Maayra</h3>
-            <p>11:00 AM Onwards</p>
-        </div>
+        <div class="schedule-container">
+            <div class="date-header" data-aos="fade-up">Sunday, 8th March</div>
 
-        <div class="event-card" data-aos="zoom-in">
-            <h3>🎶 Sangeet</h3>
-            <p>08:00 PM Onwards</p>
-        </div>
+            <div class="event-item" data-aos="fade-right">
+                <div class="jharokha-content">
+                    <div class="jharokha-icon">🌸</div>
+                    <h3>Maayra</h3>
+                    <p>11:00 AM Onwards</p>
+                    <div style="color: var(--gold); margin-top: 10px;">✦ ✦ ✦</div>
+                </div>
+            </div>
 
-        <div class="date-label" data-aos="fade-up">Monday, 9th March</div>
+            <div class="event-item" data-aos="fade-left">
+                <div class="jharokha-content">
+                    <div class="jharokha-icon">🎶</div>
+                    <h3>Sangeet</h3>
+                    <p>08:00 PM Onwards</p>
+                    <div style="color: var(--gold); margin-top: 10px;">✦ ✦ ✦</div>
+                </div>
+            </div>
 
-        <div class="event-card" data-aos="zoom-in">
-            <h3>💛 Haldi</h3>
-            <p>10:00 AM Onwards</p>
-        </div>
+            <div class="date-header" data-aos="fade-up">Monday, 9th March</div>
 
-        <div class="event-card" data-aos="zoom-in" style="border-width: 3px; border-color: var(--royal-red);">
-            <h3>💍 Wedding & Reception</h3>
-            <p>07:00 PM Onwards</p>
+            <div class="event-item" data-aos="fade-right">
+                <div class="jharokha-content">
+                    <div class="jharokha-icon">💛</div>
+                    <h3>Haldi</h3>
+                    <p>10:00 AM Onwards</p>
+                    <div style="color: var(--gold); margin-top: 10px;">✦ ✦ ✦</div>
+                </div>
+            </div>
+
+            <div class="event-item" data-aos="fade-up">
+                <div class="jharokha-content" style="border-color: var(--royal-red); border-width: 3px;">
+                    <div class="jharokha-icon">💍</div>
+                    <h3 style="color: var(--royal-red);">Wedding</h3>
+                    <p>07:00 PM Onwards</p>
+                    <div style="color: var(--royal-red); margin-top: 10px;">👑</div>
+                </div>
+            </div>
         </div>
     </section>
 
     <section class="location-section">
-        <div class="location-card" data-aos="flip-up">
-            <h2 style="font-family: 'Cinzel'; color: var(--royal-red); margin-bottom: 10px;">The Venue</h2>
-            <div style="font-size: 2rem; color: var(--gold); margin-bottom: 10px;">🏛️</div>
-            <h3 style="font-family: 'Cinzel'; margin: 0; color: #333;">Samurai Palace</h3>
-            <p style="color: #666; margin-top: 5px; font-weight: 500;">Ajmer Road, Jaipur, Rajasthan</p>
-            
-            <a href="https://maps.app.goo.gl/example" target="_blank" class="btn-gold">📍 Open Google Maps</a>
+        <div class="location-card" data-aos="zoom-in">
+            <h2 style="font-family: 'Cinzel'; color: var(--royal-red);">The Venue</h2>
+            <div style="font-size: 2.5rem; margin: 10px 0;">🏛️</div>
+            <h3 style="font-family: 'Cinzel';">Samurai Palace</h3>
+            <p style="color: #666;">Ajmer Road, Jaipur, Rajasthan</p>
+            <a href="https://maps.google.com" target="_blank" class="btn-gold">📍 View on Maps</a>
         </div>
     </section>
 
     <section class="family-section" data-aos="fade-up">
-        <div class="compliments-title">With Best Compliments From:</div>
+        <div class="date-header" style="background: none; color: var(--royal-red); border: 1px solid var(--royal-red);">With Best Compliments From:</div>
         <div class="family-names">
             <b>Shri Krishan Gupta</b><br>
             <b>Naveen Gupta</b><br>
             <b>Prakash Gupta</b><br>
-            <b>& all harsoli family</b><br>
+            <b>& all harsoli family</b>
         </div>
     </section>
 
     <footer data-aos="fade-in">
-        <p style="font-family: 'Great Vibes'; font-size: 2rem; color: var(--royal-red); margin-bottom: 5px;">Blessings Only.</p>
-        <p style="font-size: 0.8rem; color: #999;">Made with ❤️ for the Family</p>
+        <p style="font-family: 'Great Vibes'; font-size: 2.2rem; color: var(--royal-red);">Blessings Only.</p>
+        <p style="font-size: 0.8rem; color: #999;">Created for the Gupta Family</p>
     </footer>
 </div>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        // Initialize Animations
-        AOS.init({ duration: 1200, once: true });
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({ duration: 1200, once: true });
 
-        // Music Toggle Logic
-        function toggleMusic() {
-            const m = document.getElementById("bg-music");
-            const btn = document.getElementById("music-control");
-            if (m.paused) {
-                m.play();
-                btn.innerHTML = "⏸️";
-            } else {
-                m.pause();
-                btn.innerHTML = "🎵";
-            }
-        }
+    function toggleMusic() {
+        const m = document.getElementById("bg-music");
+        const btn = document.getElementById("music-control");
+        if (m.paused) { m.play(); btn.innerHTML = "⏸️"; } 
+        else { m.pause(); btn.innerHTML = "🎵"; }
+    }
 
-        // Falling Petals Animation Logic
-        function createPetal() {
-            const p = document.createElement('div');
-            p.innerHTML = '🌸'; 
-            p.style.position = 'fixed'; 
-            p.style.left = Math.random() * 100 + 'vw'; 
-            p.style.top = '-20px';
-            p.style.fontSize = (Math.random() * 15 + 10) + 'px'; 
-            p.style.opacity = Math.random(); 
-            p.style.zIndex = '99';
-            p.style.pointerEvents = 'none';
-            document.getElementById('petals-container').appendChild(p);
+    function createPetal() {
+        const p = document.createElement('div');
+        p.innerHTML = '🌸'; p.style.position = 'fixed'; 
+        p.style.left = Math.random() * 100 + 'vw'; p.style.top = '-20px';
+        p.style.fontSize = (Math.random() * 15 + 10) + 'px'; p.style.opacity = Math.random();
+        p.style.zIndex = '99'; p.style.pointerEvents = 'none';
+        document.getElementById('petals-container').appendChild(p);
+        setTimeout(() => { 
+            p.style.transition = 'all 6s linear'; 
+            p.style.transform = `translate(${Math.random() * 50 - 25}px, 100vh) rotate(${Math.random() * 360}deg)`;
+            p.style.top = '100vh'; 
+        }, 10);
+        setTimeout(() => p.remove(), 6000);
+    }
+    setInterval(createPetal, 450);
+</script>
 
-            setTimeout(() => { 
-                p.style.transition = 'all 6s linear'; 
-                p.style.transform = `translate(${Math.random() * 50 - 25}px, 100vh) rotate(${Math.random() * 360}deg)`; 
-                p.style.top = '100vh'; 
-            }, 10);
-
-            setTimeout(() => p.remove(), 6000);
-        }
-        setInterval(createPetal, 450);
-    </script>
 </body>
 </html>
